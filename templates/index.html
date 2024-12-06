@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask app</title>
+</head>
+<body>
+    <div>
+        <h2>Simple route form</h2>
+        <div>
+            <form method="post">  
+                {{ data.simple.user_input.label }}
+                {{ data.simple.user_input }}
+                </div>
+                <div>
+                {{ data.simple.simple_hidden}}
+                {{ data.simple.submit.label }}
+                {{ data.simple.submit() }}
+            </form>
+        </div>
+    </div>
+    <div>
+        <h2>Odd Route form</h2>
+        <div>
+            <form method="post">  
+                {{ data.odd.user_input.label }}
+                {{ data.odd.user_input }}
+                </div>
+                <div>
+                {{ data.odd.odd_hidden}}
+                {{ data.odd.submit.label }}
+                {{ data.odd.submit() }}
+            </form>  
+        </div>
+    </div>
+</body>
+</html>
