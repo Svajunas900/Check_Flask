@@ -2,10 +2,15 @@ from flask import Flask, render_template, request, redirect, url_for
 import json
 from functions.fibonacci import fibonacci
 from forms.forms import SimpleRouteForm, OddRouteForm
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-app.secret_key = "superSecretKey"
+load_dotenv()
+
+app.secret_key = os.environ.get("SECRETKEY")
+
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -48,8 +53,3 @@ def odd(number):
 if __name__ == "__main__":
     app.run(debug=True)
 
-
-# 4. Route 'odd' should receive the user params with GET operation and return JSON object with the explanation
-#    that the return number in the ODD sequence or not:
-#    {"user number": 5,
-#     "result": if odd - "in sequence", if not odd "not in sequence"}
