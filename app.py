@@ -16,14 +16,14 @@ app.secret_key = os.environ.get("SECRETKEY")
 def home():
     simple_form = SimpleRouteForm()
     odd_form = OddRouteForm()
-
     if request.method == "POST":
-        simple_user_number = simple_form.user_input.data
-        return redirect(url_for("simple", number=simple_user_number))
+        if "simple_submit" in request.form:
+            simple_user_number = simple_form.user_input.data
+            return redirect(url_for("simple", number=simple_user_number))
+        elif "odd_submit" in request.form:
+            odd_user_number = odd_form.user_input.data
+            return redirect(url_for("odd", number=odd_user_number))
 
-    # odd_user_number = odd_form.user_input.data
-    # return redirect(url_for("odd", number=odd_user_number))
-    
     data = {"simple": simple_form, "odd": odd_form}
     return render_template("index.html", data=data)
 
@@ -34,7 +34,6 @@ def simple(number):
     json_obj = {"User number": number,
                 "Fibonacci number": fibonacci_number}
     return json.dumps(json_obj)
-
 
 
 @app.get("/odd/<int:number>")
@@ -52,4 +51,3 @@ def odd(number):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
