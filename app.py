@@ -34,7 +34,7 @@ def home() -> None:
 
 # Based on user input calculate fibonacci number and return it as json object
 @app.get("/simple/<int:number>")
-def simple(number: int) -> None:
+def get_fibonacci_number(number: int) -> None:
     fibonacci_number = fibonacci(number)
     json_obj = {"User number": number,
                 "Fibonacci number": fibonacci_number}
@@ -43,7 +43,7 @@ def simple(number: int) -> None:
 
 # Based on user input calculate fibonacci number and return only a string which describes if a number is odd or not
 @app.get("/odd/<int:number>")
-def odd(number: int) -> None:
+def is_odd(number: int) -> None:
     fibonacci_number = fibonacci(number)
     odd = ""
     if fibonacci_number % 2 == 0:
