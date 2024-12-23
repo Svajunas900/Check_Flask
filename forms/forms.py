@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, SubmitField, HiddenField
+from wtforms import IntegerField, SubmitField
 
 class SimpleRouteForm(FlaskForm):
     user_input = IntegerField("Enter number")

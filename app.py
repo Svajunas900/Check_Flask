@@ -7,13 +7,17 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
+
+# Parsing .env file and loading variable as environment variables
 load_dotenv()
+
 
 app.secret_key = os.environ.get("SECRETKEY")
 
 
+# Route for handling form submition and redirecting to coresponding route
 @app.route("/", methods=["GET", "POST"])
-def home():
+def home() -> None:
     simple_form = SimpleRouteForm()
     odd_form = OddRouteForm()
     if request.method == "POST":
@@ -28,16 +32,18 @@ def home():
     return render_template("index.html", data=data)
 
 
+# Based on user input calculate fibonacci number and return it as json object
 @app.get("/simple/<int:number>")
-def simple(number):
+def simple(number: int) -> None:
     fibonacci_number = fibonacci(number)
     json_obj = {"User number": number,
                 "Fibonacci number": fibonacci_number}
     return json.dumps(json_obj)
 
 
+# Based on user input calculate fibonacci number and return only a string which describes if a number is odd or not
 @app.get("/odd/<int:number>")
-def odd(number):
+def odd(number: int) -> None:
     fibonacci_number = fibonacci(number)
     odd = ""
     if fibonacci_number % 2 == 0:
